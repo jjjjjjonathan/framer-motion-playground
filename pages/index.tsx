@@ -25,7 +25,7 @@ const sidebar = {
 };
 
 export default function Home() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => {
     setIsOpen((prev) => !prev);
