@@ -1,6 +1,36 @@
 import Head from 'next/head';
+import Navigation from '../components/Navigation';
+import NavToggle from '../components/NavToggle';
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+
+const sidebar = {
+  open: (height = 1000) => ({
+    clipPath: `circle(2300px at 92% 40px)`,
+    transition: {
+      type: 'spring',
+      stiffness: 20,
+      restDelta: 2,
+    },
+  }),
+  closed: {
+    clipPath: 'circle(30px at 92% 40px)',
+    transition: {
+      delay: 0.5,
+      type: 'spring',
+      stiffness: 400,
+      damping: 40,
+    },
+  },
+};
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleOpen = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <>
       <Head>
@@ -9,8 +39,23 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className='container mx-auto'>
+      <main className='mx-auto'>
         <h1 className='text-3xl'>hello world</h1>
+
+        <motion.nav
+          initial={false}
+          animate={isOpen ? 'open' : 'closed'}
+          className='h-full w-full'
+        >
+          <motion.div
+            className='absolute top-0 right-0 bottom-0 w-full bg-neutral-100'
+            variants={sidebar}
+          />
+
+          <Navigation />
+
+          <NavToggle toggle={() => toggleOpen()} />
+        </motion.nav>
       </main>
     </>
   );
