@@ -15,9 +15,7 @@ type PathProps = {
 const Path = (props: PathProps) => {
   return (
     <motion.path
-      fill='transparent'
-      strokeWidth='3'
-      stroke='hsl(0, 0%, 18%)'
+      className='fill-transparent stroke-3 stroke-neutral-900'
       strokeLinecap='round'
       {...props}
     />
@@ -27,10 +25,10 @@ const Path = (props: PathProps) => {
 const NavToggle = ({ toggle }: { toggle: any }) => {
   return (
     <button
-      onClick={toggle}
-      className='absolute top-[18px] right-[5%] width-[50px] height=[50px] rounded-[50%] bg-neutral-100'
+      onClick={(e) => toggle(e)}
+      className='absolute top-[18px] right-[5%] w-12 h-12 rounded-[50%] bg-neutral-100'
     >
-      <svg width='23' height='23' viewBox='0 0 23 23'>
+      <svg viewBox='0 0 100 100' className='w-full h-full'>
         <Path
           variants={{
             closed: { d: 'M 2 2.5 L 20 2.5' },

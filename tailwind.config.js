@@ -5,7 +5,13 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      strokeWidth: {
+        '3': '3',
+        '4': '4',
+        '5': '5'
+      }
+    },
   },
   plugins: [],
 };

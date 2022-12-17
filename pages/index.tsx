@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Navigation from '../components/Navigation';
 import NavToggle from '../components/NavToggle';
-import { useState, useRef } from 'react';
+import { useState, useRef, MouseEventHandler, MouseEvent } from 'react';
 import { motion } from 'framer-motion';
 
 const sidebar = {
@@ -27,7 +27,8 @@ const sidebar = {
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleOpen = () => {
+  const toggleOpen: MouseEventHandler = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     setIsOpen((prev) => !prev);
   };
 
@@ -54,7 +55,7 @@ export default function Home() {
 
           <Navigation />
 
-          <NavToggle toggle={() => toggleOpen()} />
+          <NavToggle toggle={toggleOpen} />
         </motion.nav>
       </main>
     </>
